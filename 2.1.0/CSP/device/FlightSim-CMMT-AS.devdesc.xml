@@ -1,0 +1,1850 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--created with CoDeSys 3.0 (http://www.3s-software.com) by DeviceDescriptionBuilder (3S-Smart Software Solutions GmbH)-->
+<DeviceDescription xmlns="http://www.3s-software.com/schemas/DeviceDescription-1.0.xsd" xmlns:ts="http://www.3s-software.com/schemas/TargetSettings-0.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Types namespace="localTypes">
+    <StructType name="TSyncMgr">
+      <Component identifier="physicalAddress" type="std:WORD">
+        <Default>8000</Default>
+        <VisibleName name="local:TSyncMgr_physicalAddress">Physical Address</VisibleName>
+      </Component>
+      <Component identifier="length" type="std:UINT">
+        <Default>10</Default>
+        <VisibleName name="local:TSyncMgr_length">Length</VisibleName>
+      </Component>
+      <Component identifier="flagtypedir" type="std:BYTE">
+        <Default>0</Default>
+        <VisibleName name="local:TSyncMgr_flagtypedir">FlagTypeDir</VisibleName>
+      </Component>
+      <Component identifier="flagevent" type="std:BYTE">
+        <Default>0</Default>
+        <VisibleName name="local:TSyncMgr_flagevent">FlagEvent</VisibleName>
+      </Component>
+      <Component identifier="flagctrl" type="std:BYTE">
+        <Default>0</Default>
+        <VisibleName name="local:TSyncMgr_flagctrl">FlagControl</VisibleName>
+      </Component>
+      <Component identifier="synctype" type="std:BYTE">
+        <Default>0</Default>
+        <VisibleName name="local:TSyncMgr_synctype">SyncType</VisibleName>
+      </Component>
+      <Component identifier="syncvirtual" type="std:BYTE">
+        <Default>0</Default>
+        <VisibleName name="local:TSyncMgr_flagvirtual">Virtual</VisibleName>
+      </Component>
+    </StructType>
+    <StructType name="TFMMU">
+      <Component identifier="globstartadr" type="std:DWORD">
+        <Default>8000</Default>
+        <VisibleName name="local:TFMMU_globstartadr">Global Start Address</VisibleName>
+      </Component>
+      <Component identifier="length" type="std:UINT">
+        <Default>1</Default>
+        <VisibleName name="local:TFMMU_length">Length</VisibleName>
+      </Component>
+      <Component identifier="startbit" type="std:BYTE">
+        <Default>0</Default>
+        <VisibleName name="local:TFMMU_startbit">StartBit</VisibleName>
+      </Component>
+      <Component identifier="endbit" type="std:BYTE">
+        <Default>3</Default>
+        <VisibleName name="local:TFMMU_endbit">EndBit</VisibleName>
+      </Component>
+      <Component identifier="physstartadr" type="std:UINT">
+        <Default>3840</Default>
+        <VisibleName name="local:TFMMU_physstartadr">Physical Start Address</VisibleName>
+      </Component>
+      <Component identifier="logstartbit" type="std:BYTE">
+        <Default>0</Default>
+        <VisibleName name="local:TFMMU_logstartbit">Logical Start Bit</VisibleName>
+      </Component>
+      <Component identifier="access" type="std:BYTE">
+        <Default>2</Default>
+        <VisibleName name="local:TFMMU_access">Access</VisibleName>
+      </Component>
+      <Component identifier="flags" type="std:DWORD">
+        <Default>0</Default>
+        <VisibleName name="local:TFMMU_flags">Flags</VisibleName>
+      </Component>
+    </StructType>
+    <StructType name="MailboxCapabilities">
+      <Component identifier="HasCoE" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:HasCoE">HasCoE</VisibleName>
+      </Component>
+      <Component identifier="HasSoE" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:HasSoE">HasSoE</VisibleName>
+      </Component>
+      <Component identifier="HasAoE" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:HasAoE">HasAoE</VisibleName>
+      </Component>
+      <Component identifier="HasEoE" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:HasEoE">HasEoE</VisibleName>
+      </Component>
+      <Component identifier="HasFoE" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:HasFoE">HasFoE</VisibleName>
+      </Component>
+      <Component identifier="HasVoE" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:HasVoE">HasVoE</VisibleName>
+      </Component>
+      <Component identifier="NbrChannels" type="std:USINT">
+        <Default />
+        <VisibleName name="local:NbrChannels">NbrChannels</VisibleName>
+      </Component>
+      <Component identifier="Profiles" type="std:ARRAY[0..0] OF WORD">
+        <Default />
+        <VisibleName name="local:Profiles">Profiles</VisibleName>
+      </Component>
+    </StructType>
+    <StructType name="Entry">
+      <Component identifier="Index" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Index">Index</VisibleName>
+        <Description name="local:Index">Index</Description>
+      </Component>
+      <Component identifier="SubIndex" type="std:UINT">
+        <Default />
+        <VisibleName name="local:SubIndex">SubIndex</VisibleName>
+        <Description name="local:SubIndex">SubIndex</Description>
+      </Component>
+      <Component identifier="Size" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Size">Size</VisibleName>
+        <Description name="local:Size">Size</Description>
+      </Component>
+      <Component identifier="Offset" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Offset">Offset</VisibleName>
+        <Description name="local:Offset">Offset</Description>
+      </Component>
+      <Component identifier="DependOnSlot" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:DependOnSlot">DependOnSlot</VisibleName>
+        <Description name="local:DependOnSlot">DependOnSlot</Description>
+      </Component>
+      <Component identifier="DependOnSlotGroup" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:DependOnSlotGroup">DependOnSlotGroup</VisibleName>
+        <Description name="local:DependOnSlotGroup">DependOnSlotGroup</Description>
+      </Component>
+    </StructType>
+    <StructType name="PDO_Information">
+      <Component identifier="Name" type="std:STRING">
+        <Default />
+        <VisibleName name="local:Name">Name</VisibleName>
+        <Description name="local:Name">Name</Description>
+      </Component>
+      <Component identifier="DataType" type="std:STRING">
+        <Default />
+        <VisibleName name="local:DataType">DataType</VisibleName>
+        <Description name="local:DataType">DataType</Description>
+      </Component>
+      <Component identifier="Default" type="std:STRING">
+        <Default />
+        <VisibleName name="local:Default">Default</VisibleName>
+        <Description name="local:Default">Default</Description>
+      </Component>
+      <Component identifier="Comment" type="std:STRING">
+        <Default />
+        <VisibleName name="local:Comment">Comment</VisibleName>
+        <Description name="local:Comment">Comment</Description>
+      </Component>
+    </StructType>
+    <StructType name="RxTxPdo">
+      <Component identifier="NumberofExcludes" type="std:INT">
+        <Default />
+        <VisibleName name="local:NumberofExcludes">NumberofExcludes</VisibleName>
+      </Component>
+      <Component identifier="NumberofEntries" type="std:INT">
+        <Default />
+        <VisibleName name="local:NumberofEntries">NumberofEntries</VisibleName>
+      </Component>
+      <Component identifier="Index" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Index">Index</VisibleName>
+      </Component>
+      <Component identifier="Fixed" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:Fixed">Fixed</VisibleName>
+      </Component>
+      <Component identifier="Mandatory" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:Mandatory">Mandatory</VisibleName>
+      </Component>
+      <Component identifier="Virtual" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:Virtual">Virtual</VisibleName>
+      </Component>
+      <Component identifier="Sm" type="std:INT">
+        <Default />
+        <VisibleName name="local:Sm">Sm</VisibleName>
+      </Component>
+      <Component identifier="Su" type="std:INT">
+        <Default />
+        <VisibleName name="local:Su">Su</VisibleName>
+      </Component>
+      <Component identifier="Name" type="std:STRING">
+        <Default />
+        <VisibleName name="local:Name">Name</VisibleName>
+      </Component>
+      <Component identifier="DependOnSlot" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:DependOnSlot">DependOnSlot</VisibleName>
+      </Component>
+      <Component identifier="DependOnSlotGroup" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:DependOnSlotGroup">DependOnSlotGroup</VisibleName>
+      </Component>
+      <Component identifier="OverwrittenByModule" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:OverwrittenByModule">OverwrittenByModule</VisibleName>
+      </Component>
+    </StructType>
+    <StructType name="Sync">
+      <Component identifier="physicalAddress" type="std:WORD">
+        <Default />
+        <VisibleName name="local:physicalAddress">Physical Address</VisibleName>
+        <Description name="local:physicalAddress">Physical Address</Description>
+      </Component>
+      <Component identifier="length" type="std:UINT">
+        <Default />
+        <VisibleName name="local:length">Length</VisibleName>
+        <Description name="local:length">Length</Description>
+      </Component>
+      <Component identifier="flagtypedir" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:flagtypedir">FlagTypeDir</VisibleName>
+        <Description name="local:flagtypedir">FlagTypeDir</Description>
+      </Component>
+      <Component identifier="flagevent" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:flagevent">FlagEvent</VisibleName>
+        <Description name="local:flagevent">FlagEvent</Description>
+      </Component>
+      <Component identifier="flagctrl" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:flagctrl">FlagControl</VisibleName>
+        <Description name="local:flagctrl">FlagControl</Description>
+      </Component>
+      <Component identifier="synctype" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:synctype">SyncType</VisibleName>
+        <Description name="local:synctype">SyncType</Description>
+      </Component>
+      <Component identifier="flagvirtual" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:flagvirtual">Virtual</VisibleName>
+        <Description name="local:flagvirtual">Virtual</Description>
+      </Component>
+    </StructType>
+    <StructType name="FMMU">
+      <Component identifier="globstartadr" type="std:DWORD">
+        <Default />
+        <VisibleName name="local:globstartadr">Global Start Address</VisibleName>
+        <Description name="local:globstartadr">Global Start Address</Description>
+      </Component>
+      <Component identifier="length" type="std:UINT">
+        <Default />
+        <VisibleName name="local:length">Length</VisibleName>
+        <Description name="local:length">Length</Description>
+      </Component>
+      <Component identifier="startbit" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:startbit">StartBit</VisibleName>
+        <Description name="local:startbit">StartBit</Description>
+      </Component>
+      <Component identifier="endbit" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:endbit">EndBit</VisibleName>
+        <Description name="local:endbit">EndBit</Description>
+      </Component>
+      <Component identifier="physstartadr" type="std:UINT">
+        <Default />
+        <VisibleName name="local:physstartadr">Physical Start Address</VisibleName>
+        <Description name="local:physstartadr">Physical Start Address</Description>
+      </Component>
+      <Component identifier="logstartbit" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:logstartbit">Logical Start Bit</VisibleName>
+        <Description name="local:logstartbit">Logical Start Bit</Description>
+      </Component>
+      <Component identifier="access" type="std:BYTE">
+        <Default />
+        <VisibleName name="local:access">Access</VisibleName>
+        <Description name="local:access">Access</Description>
+      </Component>
+      <Component identifier="flags" type="std:DWORD">
+        <Default />
+        <VisibleName name="local:flags">Flags</VisibleName>
+        <Description name="local:flags">Flags</Description>
+      </Component>
+    </StructType>
+    <StructType name="Struct_SDOParameters">
+      <Component identifier="Index" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Index">Index</VisibleName>
+        <Description name="local:Index">Index</Description>
+      </Component>
+      <Component identifier="Subindex" type="std:USINT">
+        <Default />
+        <VisibleName name="local:Subindex">Subindex</VisibleName>
+        <Description name="local:Subindex">Subindex</Description>
+      </Component>
+      <Component identifier="Value" type="std:UDINT">
+        <Default />
+        <VisibleName name="local:Value">Value</VisibleName>
+        <Description name="local:Value">Value</Description>
+      </Component>
+      <Component identifier="Size" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Size">Size</VisibleName>
+        <Description name="local:Size">Size</Description>
+      </Component>
+      <Component identifier="AbortIfError" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:AbortIfError">AbortIfError</VisibleName>
+        <Description name="local:AbortIfError">AbortIfError</Description>
+      </Component>
+      <Component identifier="JumpToLine" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:JumpToLine">JumpToLine</VisibleName>
+        <Description name="local:JumpToLine">JumpToLine</Description>
+      </Component>
+      <Component identifier="Line" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Line">Line</VisibleName>
+        <Description name="local:Line">Line</Description>
+      </Component>
+      <Component identifier="Transition" type="localTypes:CoEInitCmdTransistion">
+        <Default>0</Default>
+        <VisibleName name="local:Transition">Transition</VisibleName>
+      </Component>
+      <Component identifier="CompleteAccess" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:CompleteAccess">CompleteAccess</VisibleName>
+        <Description name="local:CompleteAccess">CompleteAccess</Description>
+      </Component>
+    </StructType>
+    <EnumType name="CoEInitCmdTransistion" basetype="std:byte">
+      <Enum identifier="CoETransitionPS">
+        <Value>0</Value>
+        <VisibleName name="local:CoEInitCmdTransistionPS">PS</VisibleName>
+      </Enum>
+      <Enum identifier="CoETransitionSO">
+        <Value>1</Value>
+        <VisibleName name="local:CoEInitCmdTransistionSO">SO</VisibleName>
+      </Enum>
+      <Enum identifier="CoETransitionSP">
+        <Value>2</Value>
+        <VisibleName name="local:CoEInitCmdTransistionSP">SP</VisibleName>
+      </Enum>
+      <Enum identifier="CoETransitionOP">
+        <Value>3</Value>
+        <VisibleName name="local:CoEInitCmdTransistionOP">OP</VisibleName>
+      </Enum>
+      <Enum identifier="CoETransitionOS">
+        <Value>4</Value>
+        <VisibleName name="local:CoEInitCmdTransistionOS">OS</VisibleName>
+      </Enum>
+    </EnumType>
+    <StructType name="Struct_SoEParameters">
+      <Component identifier="Idn" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Idn">Idn</VisibleName>
+        <Description name="local:Idn">Idn</Description>
+      </Component>
+      <Component identifier="Value" type="std:UDINT">
+        <Default />
+        <VisibleName name="local:Value">Value</VisibleName>
+        <Description name="local:Value">Value</Description>
+      </Component>
+      <Component identifier="Size" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Size">Size</VisibleName>
+        <Description name="local:Size">Size</Description>
+      </Component>
+      <Component identifier="AbortIfError" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:AbortIfError">AbortIfError</VisibleName>
+        <Description name="local:AbortIfError">AbortIfError</Description>
+      </Component>
+      <Component identifier="JumpToLine" type="std:BOOL">
+        <Default />
+        <VisibleName name="local:JumpToLine">JumpToLine</VisibleName>
+        <Description name="local:JumpToLine">JumpToLine</Description>
+      </Component>
+      <Component identifier="Line" type="std:UINT">
+        <Default />
+        <VisibleName name="local:Line">Line</VisibleName>
+        <Description name="local:Line">Line</Description>
+      </Component>
+      <Component identifier="Transition" type="localTypes:SoEInitCmdTransistion">
+        <Default>0</Default>
+        <VisibleName name="local:Transition">Transition</VisibleName>
+      </Component>
+      <Component identifier="Chn" type="std:WORD">
+        <Default>0</Default>
+        <VisibleName name="local:Chn">Chn</VisibleName>
+      </Component>
+    </StructType>
+    <EnumType name="SoEInitCmdTransistion" basetype="std:byte">
+      <Enum identifier="SoETransitionPS">
+        <Value>0</Value>
+        <VisibleName name="local:SoEInitCmdTransistionPS">PS</VisibleName>
+      </Enum>
+      <Enum identifier="SoETransitionSO">
+        <Value>1</Value>
+        <VisibleName name="local:SoEInitCmdTransistionSO">SO</VisibleName>
+      </Enum>
+      <Enum identifier="SoETransitionSP">
+        <Value>2</Value>
+        <VisibleName name="local:SoEInitCmdTransistionSP">SP</VisibleName>
+      </Enum>
+      <Enum identifier="SoETransitionOP">
+        <Value>3</Value>
+        <VisibleName name="local:SoEInitCmdTransistionOP">OP</VisibleName>
+      </Enum>
+      <Enum identifier="SoETransitionOS">
+        <Value>4</Value>
+        <VisibleName name="local:SoEInitCmdTransistionOS">OS</VisibleName>
+      </Enum>
+      <Enum identifier="SoETransitionIP">
+        <Value>5</Value>
+        <VisibleName name="local:SoEInitCmdTransistionIP">IP</VisibleName>
+      </Enum>
+    </EnumType>
+  </Types>
+  <ParameterFilterFlags />
+  <Strings namespace="local">
+    <Language lang="en-en">
+      <String identifier="TSyncMgr_physicalAddress">Physical Address</String>
+      <String identifier="TSyncMgr_length">Length</String>
+      <String identifier="TSyncMgr_flagtypedir">FlagTypeDir</String>
+      <String identifier="TSyncMgr_flagevent">FlagEvent</String>
+      <String identifier="TSyncMgr_flagctrl">FlagControl</String>
+      <String identifier="TSyncMgr_synctype">SyncType</String>
+      <String identifier="TSyncMgr_flagvirtual">Virtual</String>
+      <String identifier="TFMMU_globstartadr">Global Start Address</String>
+      <String identifier="TFMMU_length">Length</String>
+      <String identifier="TFMMU_startbit">StartBit</String>
+      <String identifier="TFMMU_endbit">EndBit</String>
+      <String identifier="TFMMU_physstartadr">Physical Start Address</String>
+      <String identifier="TFMMU_logstartbit">Logical Start Bit</String>
+      <String identifier="TFMMU_access">Access</String>
+      <String identifier="TFMMU_flags">Flags</String>
+      <String identifier="devicename">CMMT-AS (FlightSim PP/CSP)</String>
+      <String identifier="instancename">CMMT-AS</String>
+      <String identifier="typedevicedescription">EtherCAT Festo servo motor controller CMMT-AS-...-EC (point to point)</String>
+      <String identifier="Festo">Festo</String>
+      <String identifier="FestoCMMT">CMMT</String>
+      <String identifier="EtherCAT">EtherCAT</String>
+      <String identifier="General">General</String>
+      <String identifier="Parameter_Identity">Number of Identity Parameters</String>
+      <String identifier="Parameter_VendorID">Vendor Id of the Slave</String>
+      <String identifier="Parameter_ProductCodeDesc">Product Code of the Slave</String>
+      <String identifier="Parameter_CheckProductID">CheckProductID</String>
+      <String identifier="Parameter_CheckVendorID">CheckVendorID</String>
+      <String identifier="Parameter_RevisionNumber">Revision Number of the Slave</String>
+      <String identifier="Parameter_SerialNumber">Serialnumber of the Slave</String>
+      <String identifier="Parameter_PhysAddress">Physical Address of the Slave</String>
+      <String identifier="Parameter_SlaveAutoIncAddress">AutoIncr Address of the Slave</String>
+      <String identifier="Parameter_LinkDelayTimeoutPortB">LinkDelayTimeoutPortB</String>
+      <String identifier="DeviceURL">Device URL</String>
+      <String identifier="deviceURLDescription">http://www.festo.com</String>
+      <String identifier="HasCoE">HasCoE</String>
+      <String identifier="HasSoE">HasSoE</String>
+      <String identifier="HasAoE">HasAoE</String>
+      <String identifier="HasEoE">HasEoE</String>
+      <String identifier="HasFoE">HasFoE</String>
+      <String identifier="HasVoE">HasVoE</String>
+      <String identifier="NbrChannels">NbrChannels</String>
+      <String identifier="Profiles">Profiles</String>
+      <String identifier="Parameter_MailboxCapabilities">Mailbox capabilities</String>
+      <String identifier="DiagString">Diag String</String>
+      <String identifier="DiagAck">Diag Acknowledge</String>
+      <String identifier="Parameter_PreOpTimeout">Timeout Init to Preop</String>
+      <String identifier="Parameter_SafeOpTimeout">Timeout Preop to Safeop, SafeOp to Op</String>
+      <String identifier="Parameter_SDOTimeout">Timeout SDO Access</String>
+      <String identifier="Parameter_BackToInitTimeout">Timeout Back to Init</String>
+      <String identifier="Parameter_BackToSafeopTimeout">Timeout Back to SafeOp</String>
+      <String identifier="Parameter_Bootstrap">Bootstrap config data</String>
+      <String identifier="Parameter_PDOAssign">PDOAssign</String>
+      <String identifier="Parameter_PDOConfig">PDOConfig</String>
+      <String identifier="Parameter_CompleteAccess">CompleteAccess</String>
+      <String identifier="Parameter_Watchdog_Reg_0400">Watchdog register 0400</String>
+      <String identifier="Parameter_Watchdog_Reg_0410">Watchdog register 0410</String>
+      <String identifier="Parameter_Watchdog_Reg_0420">Watchdog register 0420</String>
+      <String identifier="Distributed_Clocks">Distributed_Clocks</String>
+      <String identifier="DCSetting">DCSetting</String>
+      <String identifier="Parameter_Ditributedclocksync0factor">DC sync0 factor</String>
+      <String identifier="Parameter_Ditributedclocksync0cycletime">DC sync0 cycletime</String>
+      <String identifier="Parameter_Ditributedclockenable">DC enable</String>
+      <String identifier="Parameter_Ditributedclocksync0enable">DC sync0 enable</String>
+      <String identifier="Parameter_Ditributedclocksync1enable">DC sync1 enable</String>
+      <String identifier="Parameter_Ditributedclocksync1cycletime">DC sync1 cycletime</String>
+      <String identifier="Entry">Entry</String>
+      <String identifier="Index">Index</String>
+      <String identifier="SubIndex">SubIndex</String>
+      <String identifier="Size">Size</String>
+      <String identifier="Offset">Offset</String>
+      <String identifier="DependOnSlot">DependOnSlot</String>
+      <String identifier="DependOnSlotGroup">DependOnSlotGroup</String>
+      <String identifier="OverwrittenByModule">OverwrittenByModule</String>
+      <String identifier="Name">Name</String>
+      <String identifier="DataType">DataType</String>
+      <String identifier="Default">Default</String>
+      <String identifier="Comment">Comment</String>
+      <String identifier="NumberofExcludes">NumberofExcludes</String>
+      <String identifier="NumberofEntries">NumberofEntries</String>
+      <String identifier="Fixed">Fixed</String>
+      <String identifier="Mandatory">Mandatory</String>
+      <String identifier="Virtual">Virtual</String>
+      <String identifier="Sm">Sm</String>
+      <String identifier="Su">Su</String>
+      <String identifier="RxTxPdo">RxTxPdo</String>
+      <String identifier="Exclude">Exclude</String>
+      <String identifier="RxPDO">RxPDO</String>
+      <String identifier="Parameter_NumberOfRx">Number of RxPDOs of the Slave</String>
+      <String identifier="RxPDO1">RxPDO1</String>
+      <String identifier="ControlwordRX1">Controlword</String>
+      <String identifier="Modes20of20operationRX2">Modes of operation</String>
+      <String identifier="Target20positionRX3">Target position</String>
+      <String identifier="Profile20velocityRX4">Profile velocity</String>
+      <String identifier="Target20velocityRX5">Target velocity</String>
+      <String identifier="Target20torqueRX6">Target torque</String>
+      <String identifier="Velocity20offsetRX7">Velocity offset</String>
+      <String identifier="Torque20offsetRX8">Torque offset</String>
+      <String identifier="EntryRX9">Entry</String>
+      <String identifier="TxPDO">TxPDO</String>
+      <String identifier="Parameter_NumberOfTx">Number of TxPDOs of the Slave</String>
+      <String identifier="TxPDO1">TxPDO1</String>
+      <String identifier="StatuswordTX1">Statusword</String>
+      <String identifier="Modes20of20operation20displayTX2">Modes of operation display</String>
+      <String identifier="Position20actual20valueTX3">Position actual value</String>
+      <String identifier="Velocity20actual20valueTX4">Velocity actual value</String>
+      <String identifier="Torque20actual20valueTX5">Torque actual value</String>
+      <String identifier="Multiturns20actual20valueTX6">Multiturns actual value</String>
+      <String identifier="EntryTX7">Entry</String>
+      <String identifier="TxPDO2">TxPDO2</String>
+      <String identifier="New20Message20AvailableTX1">New Message Available</String>
+      <String identifier="EntryTX2">Entry</String>
+      <String identifier="TxPDO3">TxPDO3</String>
+      <String identifier="TimestampTX1">Timestamp</String>
+      <String identifier="SyncManager">SyncManager</String>
+      <String identifier="Parameter_NumberofSyncMan">Number of SyncManagers of the Slave</String>
+      <String identifier="Sync">Sync </String>
+      <String identifier="physicalAddress">Physical Address</String>
+      <String identifier="length">Length</String>
+      <String identifier="flagtypedir">FlagTypeDir</String>
+      <String identifier="flagevent">FlagEvent</String>
+      <String identifier="flagctrl">FlagControl</String>
+      <String identifier="synctype">SyncType</String>
+      <String identifier="flagvirtual">Virtual</String>
+      <String identifier="FMMUs">FMMUs</String>
+      <String identifier="FMMU">FMMU </String>
+      <String identifier="globstartadr">Global Start Address</String>
+      <String identifier="startbit">StartBit</String>
+      <String identifier="endbit">EndBit</String>
+      <String identifier="physstartadr">Physical Start Address</String>
+      <String identifier="logstartbit">Logical Start Bit</String>
+      <String identifier="access">Access</String>
+      <String identifier="flags">Flags</String>
+      <String identifier="Parameter_NumberofFMMU">Number of FMMUs of the Slave</String>
+      <String identifier="Controlword">Controlword</String>
+      <String identifier="Modes20of20operation">Modes of operation</String>
+      <String identifier="Target20position">Target position</String>
+      <String identifier="Profile20velocity">Profile velocity</String>
+      <String identifier="Target20velocity">Target velocity</String>
+      <String identifier="Target20torque">Target torque</String>
+      <String identifier="Velocity20offset">Velocity offset</String>
+      <String identifier="Torque20offset">Torque offset</String>
+      <String identifier="DummyOut8">---</String>
+      <String identifier="Statusword">Statusword</String>
+      <String identifier="Modes20of20operation20display">Modes of operation display</String>
+      <String identifier="Position20actual20value">Position actual value</String>
+      <String identifier="Velocity20actual20value">Velocity actual value</String>
+      <String identifier="Torque20actual20value">Torque actual value</String>
+      <String identifier="Multiturns20actual20value">Multiturns actual value</String>
+      <String identifier="DummyIn6">---</String>
+      <String identifier="Map_NumberOfOutputs">Number of Outputs</String>
+      <String identifier="Mapping_NumberOfOutputs">Number of Infos about Outputs</String>
+      <String identifier="Mapping_PhysicalAddressof1Output">Physical Address of 1. Output</String>
+      <String identifier="Mapping_Lengthof1Output">Length of the first Output</String>
+      <String identifier="Mapping_StartBitof1Output">StartBit of the first Output</String>
+      <String identifier="Mapping_EndBitof1Output">EndBit of the first Output</String>
+      <String identifier="Map_NumberOfInputs">Number of Inputs</String>
+      <String identifier="Mapping_NumberOfInputs">Number of Infos about Inputs</String>
+      <String identifier="Mapping_PhysicalAddressof1Input">Physical Address of 1. Input</String>
+      <String identifier="Mapping_Lengthof1Input">Length of the first Input</String>
+      <String identifier="Mapping_StartBitof1Input">StartBit of the first Input</String>
+      <String identifier="Mapping_EndBitof1Input">EndBit of the first Input</String>
+      <String identifier="SDOs">SDOs</String>
+      <String identifier="Parameter_Number_Of_SDO">Number of SDO</String>
+    </Language>
+    <Language lang="de-de">
+      <String identifier="devicename">CMMT-AS (FlightSim PP/CSP)</String>
+      <String identifier="typedevicedescription">EtherCAT Festo Servoantriebsregler CMMT-AS-...-EC (point to point)</String>
+      <String identifier="FestoCMMT">CMMT</String>
+      <String identifier="deviceURLDescription">http://www.festo.com</String>
+    </Language>
+    <Language lang="en">
+      <String identifier="Index">Index</String>
+      <String identifier="Subindex">Subindex</String>
+      <String identifier="Value">Value</String>
+      <String identifier="Size">Size</String>
+      <String identifier="AbortIfError">AbortIfError</String>
+      <String identifier="JumpToLine">JumpToLine</String>
+      <String identifier="Line">Line</String>
+      <String identifier="Transition">Transition</String>
+      <String identifier="CoEInitCmdTransistionPS">PS</String>
+      <String identifier="CoEInitCmdTransistionSO">SO</String>
+      <String identifier="CoEInitCmdTransistionSP">SP</String>
+      <String identifier="CoEInitCmdTransistionOP">OP</String>
+      <String identifier="CoEInitCmdTransistionOS">OS</String>
+      <String identifier="CompleteAccess">CompleteAccess</String>
+      <String identifier="Idn">Idn</String>
+      <String identifier="Chn">Chn</String>
+      <String identifier="SoEInitCmdTransistionPS">PS</String>
+      <String identifier="SoEInitCmdTransistionSO">SO</String>
+      <String identifier="SoEInitCmdTransistionSP">SP</String>
+      <String identifier="SoEInitCmdTransistionOP">OP</String>
+      <String identifier="SoEInitCmdTransistionOS">OS</String>
+      <String identifier="SoEInitCmdTransistionIP">IP</String>
+    </Language>
+  </Strings>
+  <Files namespace="local">
+    <Language lang="en">
+      <File identifier="DeviceIcon" fileref="local">
+        <LocalFile>CMMT-AS.ico</LocalFile>
+      </File>
+      <File identifier="XMLFile" fileref="local">
+        <LocalFile>Festo-CMMT-AS-CiA402-20220524.xml</LocalFile>
+      </File>
+      <File identifier="DeviceImage" fileref="local">
+        <LocalFile>cmmt_as.png</LocalFile>
+      </File>
+      <File identifier="DeviceIcon" fileref="local">
+        <LocalFile>cmmt_as_tree.ico</LocalFile>
+      </File>
+    </Language>
+  </Files>
+  <Device hideInCatalogue="false" onlineHelpUrl="http://www.festo.com">
+    <DeviceIdentification>
+      <Type>65</Type>
+      <Id>1D_007B1A9500000009_FLIGHTSIM_CSP</Id>
+      <Version>1.0.0.0</Version>
+    </DeviceIdentification>
+    <DeviceInfo>
+      <Name name="local:devicename">CMMT-AS (FlightSim PP/CSP)</Name>
+      <Description name="local:typedevicedescription">EtherCAT Festo servo motor controller CMMT-AS-...-EC (point to point)</Description>
+      <Vendor name="local:Festo">Festo</Vendor>
+      <OrderNumber>5340819, 534082x, 813335x</OrderNumber>
+      <Icon name="local:DeviceIcon">CMMT-AS.ico</Icon>
+      <DefaultInstanceName name="local:instancename">CMMT-AS</DefaultInstanceName>
+      <SubCategory name="local:Festo" TypeCategory="Festo">Festo</SubCategory>
+      <SubCategory name="local:FestoCMMT" TypeCategory="FestoCMMT" ParentTypeCategory="Festo">CMMT</SubCategory>
+      <AdditionalFiles>
+        <File name="local:XMLFile" key="Common.File.XML.NativeDescription">Festo-CMMT-AS-CiA402-20220524.xml</File>
+      </AdditionalFiles>
+      <Icon name="localFiles:DeviceIcon">cmmt_as_tree.ico</Icon>
+      <Image name="localFiles:DeviceImage">cmmt_as.png</Image>
+    </DeviceInfo>
+    <Connector moduleType="65" interface="Common.Ethercat" role="child" explicit="false" hostpath="-1" connectorId="1" alwaysmapping="true">
+      <InterfaceName name="local:EtherCAT">EtherCAT</InterfaceName>
+      <Slot count="1" allowEmpty="false" />
+      <DriverInfo needsBusCycle="false">
+        <RequiredLib libname="IODrvEtherCAT" vendor="3S - Smart Software Solutions GmbH" version="3.1.2.0" identifier="IODrvEtherCAT" placeholderlib="IODrvEtherCAT">
+          <FBInstance fbname="ETCSlave" fbnamediag="ETCSlave_Diag" basename="$(DeviceName)ETCSlave">
+            <Initialize methodName="Initialize" />
+          </FBInstance>
+        </RequiredLib>
+        <!--CiA402 PtP related libraries-->
+        <RequiredLib libname="Festo_PtP_Base" placeholderlib="Festo_PtP_Base" vendor="Festo" version="3.5.16.41" identifier="deviceLib" />
+        <RequiredLib libname="Festo_PtP_Virtual" placeholderlib="Festo_PtP_Virtual" vendor="Festo" version="3.5.16.41" identifier="deviceLib" />
+        <RequiredLib libname="Festo_PtP_CiA402" placeholderlib="Festo_PtP_CiA402" vendor="Festo" version="3.5.16.41" identifier="deviceLib" />
+        <RequiredLib libname="Festo_PtP_CiA402_ETC" placeholderlib="Festo_PtP_CiA402_ETC" vendor="Festo" version="3.5.16.41" identifier="deviceLib" />
+        <RequiredLib libname="Festo_PtP_CiA402_ETC_CMMT_AS" vendor="Festo" version="3.5.16.41" identifier="deviceLib">
+          <FBInstance fbname="AXIS_REF_CiA402_ETC_CMMT_AS" basename="$(DeviceName)">
+            <Initialize methodName="Initialize" />
+            <CyclicCall methodname="BeforeReadInputs" task="#buscycletask" whentocall="beforeReadInputs" />
+            <CyclicCall methodname="AfterReadInputs" task="#buscycletask" whentocall="afterReadInputs" />
+            <CyclicCall methodname="AfterWriteOutputs" task="#buscycletask" whentocall="afterWriteOutputs" />
+          </FBInstance>
+        </RequiredLib>
+      </DriverInfo>
+      <HostParameterSet>
+        <ParameterSection>
+          <Name name="local:General">General</Name>
+          <Parameter ParameterId="1074796544" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>4</Default>
+            <Name name="local:Parameter_Identity">Number of Identity Parameters</Name>
+            <Description name="local:Parameter_Identity">Number of Identity Parameters</Description>
+          </Parameter>
+          <Parameter ParameterId="1074796545" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>29</Default>
+            <Name name="local:Parameter_VendorID">Vendor Id of the Slave</Name>
+            <Description name="local:Parameter_VendorID">Vendor Id of the Slave</Description>
+          </Parameter>
+          <Parameter ParameterId="1074796546" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>8067733</Default>
+            <Name name="local:Parameter_ProductCodeDesc">Product Code of the Slave</Name>
+            <Description name="local:Parameter_ProductCodeDesc">Product Code of the Slave</Description>
+          </Parameter>
+          <Parameter ParameterId="805306384" type="std:BOOL">
+            <Attributes download="true" functional="false" />
+            <Default>TRUE</Default>
+            <Name name="local:Parameter_CheckProductID">CheckProductID</Name>
+            <Description name="local:Parameter_CheckProductID">CheckProductID</Description>
+          </Parameter>
+          <Parameter ParameterId="805306400" type="std:BOOL">
+            <Attributes download="true" functional="false" />
+            <Default>TRUE</Default>
+            <Name name="local:Parameter_CheckVendorID">CheckVendorID</Name>
+            <Description name="local:Parameter_CheckVendorID">CheckVendorID</Description>
+          </Parameter>
+          <Parameter ParameterId="1074796547" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>9</Default>
+            <Name name="local:Parameter_RevisionNumber">Revision Number of the Slave</Name>
+            <Description name="local:Parameter_RevisionNumber">Revision Number of the Slave</Description>
+          </Parameter>
+          <Parameter ParameterId="1074796548" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>0</Default>
+            <Name name="local:Parameter_SerialNumber">Serialnumber of the Slave</Name>
+            <Description name="local:Parameter_SerialNumber">Serialnumber of the Slave</Description>
+          </Parameter>
+          <Parameter ParameterId="1074855936" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>0</Default>
+            <Name name="local:Parameter_PhysAddress">Physical Address of the Slave</Name>
+            <Description name="local:Parameter_PhysAddress">Physical Address of the Slave</Description>
+          </Parameter>
+          <Parameter ParameterId="1074855937" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>0</Default>
+            <Name name="local:Parameter_SlaveAutoIncAddress">AutoIncr Address of the Slave</Name>
+            <Description name="local:Parameter_SlaveAutoIncAddress">AutoIncr Address of the Slave</Description>
+          </Parameter>
+          <Parameter ParameterId="1074856000" type="std:UINT">
+            <Attributes download="true" />
+            <Default>1000</Default>
+            <Name name="local:Parameter_LinkDelayTimeoutPortB">LinkDelayTimeoutPortB</Name>
+            <Description name="local:Parameter_LinkDelayTimeoutPortB">LinkDelayTimeoutPortB</Description>
+          </Parameter>
+          <Parameter ParameterId="1074797064" type="std:STRING">
+            <Attributes offlineaccess="read" download="false" />
+            <Default>'http://www.festo.com'</Default>
+            <Name name="local:DeviceURL">Device URL</Name>
+            <Description name="local:deviceURLDescription">http://www.festo.com</Description>
+          </Parameter>
+          <Parameter ParameterId="805306688" type="localTypes:MailboxCapabilities">
+            <Attributes offlineaccess="read" download="false" />
+            <Default>
+              <Element name="HasCoE">True</Element>
+              <Element name="HasSoE">False</Element>
+              <Element name="HasAoE">False</Element>
+              <Element name="HasFoE">True</Element>
+              <Element name="HasEoE">True</Element>
+              <Element name="HasVoE">False</Element>
+              <Element name="NbrChannels">0</Element>
+              <Element name="Profiles">[402]</Element>
+            </Default>
+            <Name name="local:Parameter_MailboxCapabilities">Mailbox capabilities</Name>
+          </Parameter>
+          <Parameter ParameterId="1074855984" type="std:STRING(255)">
+            <Attributes offlineaccess="none" download="true" channel="diag" />
+            <Default />
+            <Name name="local:DiagString">Diag String</Name>
+          </Parameter>
+          <Parameter ParameterId="1074855985" type="std:BOOL">
+            <Attributes offlineaccess="none" download="true" channel="diagAck" />
+            <Default>FALSE</Default>
+            <Name name="local:DiagAck">Diag Acknowledge</Name>
+          </Parameter>
+          <Parameter ParameterId="805306432" type="std:DWORD">
+            <Attributes download="true" />
+            <Default>3000</Default>
+            <Name name="local:Parameter_PreOpTimeout">Timeout Init to Preop</Name>
+            <Description name="local:Parameter_PreOpTimeout">Timeout Init to Preop</Description>
+          </Parameter>
+          <Parameter ParameterId="805306448" type="std:DWORD">
+            <Attributes download="true" />
+            <Default>10000</Default>
+            <Name name="local:Parameter_SafeOpTimeout">Timeout Preop to Safeop, SafeOp to Op</Name>
+            <Description name="local:Parameter_SafeOpTimeout">Timeout Preop to Safeop, SafeOp to Op</Description>
+          </Parameter>
+          <Parameter ParameterId="805306416" type="std:DWORD">
+            <Attributes download="true" />
+            <Default>1000</Default>
+            <Name name="local:Parameter_SDOTimeout">Timeout SDO Access</Name>
+            <Description name="local:Parameter_SDOTimeout">Timeout SDO Access</Description>
+          </Parameter>
+          <Parameter ParameterId="805306464" type="std:DWORD">
+            <Attributes download="true" />
+            <Default>5000</Default>
+            <Name name="local:Parameter_BackToInitTimeout">Timeout Back to Init</Name>
+            <Description name="local:Parameter_BackToInitTimeout">Timeout Back to Init</Description>
+          </Parameter>
+          <Parameter ParameterId="805306480" type="std:DWORD">
+            <Attributes download="true" />
+            <Default>200</Default>
+            <Name name="local:Parameter_BackToSafeopTimeout">Timeout Back to SafeOp</Name>
+            <Description name="local:Parameter_BackToSafeopTimeout">Timeout Back to SafeOp</Description>
+          </Parameter>
+          <Parameter ParameterId="805306624" type="std:ARRAY[0..7] OF BYTE">
+            <Attributes download="true" />
+            <Default>[16#0,16#10,16#0,16#4,16#0,16#18,16#0,16#4]</Default>
+            <Name name="local:Parameter_Bootstrap">Bootstrap config data</Name>
+            <Description name="local:Parameter_Bootstrap">Bootstrap config data</Description>
+          </Parameter>
+          <Parameter ParameterId="805371904" type="std:BOOL">
+            <Attributes download="true" functional="false" />
+            <Default>TRUE</Default>
+            <Name name="local:Parameter_PDOAssign">PDOAssign</Name>
+            <Description name="local:Parameter_PDOAssign">PDOAssign</Description>
+          </Parameter>
+          <Parameter ParameterId="805392384" type="std:BOOL">
+            <Attributes download="true" functional="false" />
+            <Default>TRUE</Default>
+            <Name name="local:Parameter_PDOConfig">PDOConfig</Name>
+            <Description name="local:Parameter_PDOConfig">PDOConfig</Description>
+          </Parameter>
+          <Parameter ParameterId="805412864" type="std:BOOL">
+            <Attributes download="true" functional="false" />
+            <Default>TRUE</Default>
+            <Name name="local:Parameter_CompleteAccess">CompleteAccess</Name>
+            <Description name="local:Parameter_CompleteAccess">CompleteAccess</Description>
+          </Parameter>
+          <Parameter ParameterId="805438464" type="std:WORD">
+            <Attributes download="true" functional="false" />
+            <Default>16#9C2</Default>
+            <Name name="local:Parameter_Watchdog_Reg_0400">Watchdog register 0400</Name>
+            <Description name="local:Parameter_Watchdog_Reg_0400">Watchdog register 0400</Description>
+          </Parameter>
+          <Parameter ParameterId="805438480" type="std:WORD">
+            <Attributes download="true" functional="false" />
+            <Default>16#BB8</Default>
+            <Name name="local:Parameter_Watchdog_Reg_0410">Watchdog register 0410</Name>
+            <Description name="local:Parameter_Watchdog_Reg_0410">Watchdog register 0410</Description>
+          </Parameter>
+          <Parameter ParameterId="805438496" type="std:WORD">
+            <Attributes download="true" functional="false" />
+            <Default>16#3E8</Default>
+            <Name name="local:Parameter_Watchdog_Reg_0420">Watchdog register 0420</Name>
+            <Description name="local:Parameter_Watchdog_Reg_0420">Watchdog register 0420</Description>
+          </Parameter>
+          <Parameter ParameterId="16777216" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" functional="false" />
+            <Default>9</Default>
+            <Name name="local:Map_NumberOfOutputs">Number of Outputs</Name>
+            <Description name="local:Map_NumberOfOutputs">Number of Outputs</Description>
+          </Parameter>
+          <Parameter ParameterId="268435456" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>9</Default>
+            <Name name="local:Mapping_NumberOfOutputs">Number of Infos about Outputs</Name>
+            <Description name="local:Mapping_NumberOfOutputs">Number of Infos about Outputs</Description>
+          </Parameter>
+          <Parameter ParameterId="268435472" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>3840</Default>
+            <Name name="local:Mapping_PhysicalAddressof1Output">Physical Address of 1. Output</Name>
+            <Description name="local:Mapping_PhysicalAddressof1Output">Physical Address of 1. Output</Description>
+          </Parameter>
+          <Parameter ParameterId="268435473" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>1</Default>
+            <Name name="local:Mapping_Lengthof1Output">Length of the first Output</Name>
+            <Description name="local:Mapping_Lengthof1Output">Length of the first Output</Description>
+          </Parameter>
+          <Parameter ParameterId="268435474" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>0</Default>
+            <Name name="local:Mapping_StartBitof1Output">StartBit of the first Output</Name>
+            <Description name="local:Mapping_StartBitof1Output">StartBit of the first Output</Description>
+          </Parameter>
+          <Parameter ParameterId="268435475" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>7</Default>
+            <Name name="local:Mapping_EndBitof1Output">EndBit of the first Output</Name>
+            <Description name="local:Mapping_EndBitof1Output">EndBit of the first Output</Description>
+          </Parameter>
+          <Parameter ParameterId="33554432" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>7</Default>
+            <Name name="local:Map_NumberOfInputs">Number of Inputs</Name>
+            <Description name="local:Map_NumberOfInputs">Number of Inputs</Description>
+          </Parameter>
+          <Parameter ParameterId="536870912" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>7</Default>
+            <Name name="local:Mapping_NumberOfInputs">Number of Infos about Inputs</Name>
+            <Description name="local:Mapping_NumberOfInputs">Number of Infos about Inputs</Description>
+          </Parameter>
+          <Parameter ParameterId="536870928" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>3840</Default>
+            <Name name="local:Mapping_PhysicalAddressof1Input">Physical Address of 1. Input</Name>
+            <Description name="local:Mapping_PhysicalAddressof1Input">Physical Address of 1. Input</Description>
+          </Parameter>
+          <Parameter ParameterId="536870929" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>1</Default>
+            <Name name="local:Mapping_Lengthof1Input">Length of the first Input</Name>
+            <Description name="local:Mapping_Lengthof1Input">Length of the first Input</Description>
+          </Parameter>
+          <Parameter ParameterId="536870930" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>0</Default>
+            <Name name="local:Mapping_StartBitof1Input">StartBit of the first Input</Name>
+            <Description name="local:Mapping_StartBitof1Input">StartBit of the first Input</Description>
+          </Parameter>
+          <Parameter ParameterId="536870931" type="std:DWORD">
+            <Attributes offlineaccess="readwrite" download="true" />
+            <Default>7</Default>
+            <Name name="local:Mapping_EndBitof1Input">EndBit of the first Input</Name>
+            <Description name="local:Mapping_EndBitof1Input">EndBit of the first Input</Description>
+          </Parameter>
+        </ParameterSection>
+        <ParameterSection>
+          <Name name="local:Distributed_Clocks">Distributed_Clocks</Name>
+          <Parameter ParameterId="1610833920" type="std:WORD">
+            <Attributes offlineaccess="none" onlineaccess="none" download="false" />
+            <Default>0</Default>
+            <Name name="local:DCSetting">DCSetting</Name>
+          </Parameter>
+          <Parameter ParameterId="1610743808" type="std:STRING">
+            <Attributes download="false" />
+            <Default>'x 1'</Default>
+            <Name name="local:Parameter_Ditributedclocksync0factor">DC sync0 factor</Name>
+          </Parameter>
+          <Parameter ParameterId="1610633216" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>0</Default>
+            <Name name="local:Parameter_Ditributedclocksync0cycletime">DC sync0 cycletime</Name>
+            <Description name="local:Parameter_Ditributedclocksync0cycletime">DC sync0 cycletime</Description>
+          </Parameter>
+          <Parameter ParameterId="1610678272" type="std:BOOL">
+            <Attributes download="true" functional="false" />
+            <Default>TRUE</Default>
+            <Name name="local:Parameter_Ditributedclockenable">DC enable</Name>
+            <Description name="local:Parameter_Ditributedclockenable">DC enable</Description>
+          </Parameter>
+          <Parameter ParameterId="1610698752" type="std:BOOL">
+            <Attributes download="true" functional="false" />
+            <Default>TRUE</Default>
+            <Name name="local:Parameter_Ditributedclocksync0enable">DC sync0 enable</Name>
+            <Description name="local:Parameter_Ditributedclocksync0enable">DC sync0 enable</Description>
+          </Parameter>
+          <Parameter ParameterId="1610809344" type="std:BOOL">
+            <Attributes download="true" functional="false" />
+            <Default>FALSE</Default>
+            <Name name="local:Parameter_Ditributedclocksync1enable">DC sync1 enable</Name>
+            <Description name="local:Parameter_Ditributedclocksync1enable">DC sync1 enable</Description>
+          </Parameter>
+          <Parameter ParameterId="1610764288" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>0</Default>
+            <Name name="local:Parameter_Ditributedclocksync1cycletime">DC sync1 cycletime</Name>
+            <Description name="local:Parameter_Ditributedclocksync1cycletime">DC sync1 cycletime</Description>
+          </Parameter>
+        </ParameterSection>
+        <ParameterSection>
+          <Name name="local:RxPDO">RxPDO</Name>
+          <Parameter ParameterId="1342504960" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>1</Default>
+            <Name name="local:Parameter_NumberOfRx">Number of RxPDOs of the Slave</Name>
+            <Description name="local:Parameter_NumberOfRx">Number of RxPDOs of the Slave</Description>
+          </Parameter>
+          <ParameterSection>
+            <Name name="local:RxPDO1">RxPDO1</Name>
+            <ParameterSection>
+              <Name name="local:ControlwordRX1">Controlword</Name>
+              <Parameter ParameterId="1879048194" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#6040</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">16</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:ControlwordRX1">Controlword</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096770" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Controlword'</Element>
+                  <Element name="DataType">'UINT'</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:ControlwordRX1">Controlword</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Modes20of20operationRX2">Modes of operation</Name>
+              <Parameter ParameterId="1879048195" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#6060</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">8</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Modes20of20operationRX2">Modes of operation</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096771" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Modes of operation'</Element>
+                  <Element name="DataType">'SINT'</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Modes20of20operationRX2">Modes of operation</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Target20positionRX3">Target position</Name>
+              <Parameter ParameterId="1879048196" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#607A</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">32</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Target20positionRX3">Target position</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096772" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Target position'</Element>
+                  <Element name="DataType">'DINT'</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Target20positionRX3">Target position</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Profile20velocityRX4">Profile velocity</Name>
+              <Parameter ParameterId="1879048197" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#6081</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">32</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Profile20velocityRX4">Profile velocity</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096773" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Profile velocity'</Element>
+                  <Element name="DataType">'UDINT'</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Profile20velocityRX4">Profile velocity</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Target20velocityRX5">Target velocity</Name>
+              <Parameter ParameterId="1879048198" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#60FF</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">32</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Target20velocityRX5">Target velocity</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096774" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Target velocity'</Element>
+                  <Element name="DataType">'DINT'</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Target20velocityRX5">Target velocity</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Target20torqueRX6">Target torque</Name>
+              <Parameter ParameterId="1879048199" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#6071</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">16</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Target20torqueRX6">Target torque</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096775" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Target torque'</Element>
+                  <Element name="DataType">'INT'</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Target20torqueRX6">Target torque</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Velocity20offsetRX7">Velocity offset</Name>
+              <Parameter ParameterId="1879048200" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#60B1</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">32</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Velocity20offsetRX7">Velocity offset</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096776" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Velocity offset'</Element>
+                  <Element name="DataType">'DINT'</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Velocity20offsetRX7">Velocity offset</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Torque20offsetRX8">Torque offset</Name>
+              <Parameter ParameterId="1879048201" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#60B2</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">16</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Torque20offsetRX8">Torque offset</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096777" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Torque offset'</Element>
+                  <Element name="DataType">'INT'</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Torque20offsetRX8">Torque offset</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:EntryRX9">Entry</Name>
+              <Parameter ParameterId="1879048202" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">0</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">8</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:EntryRX9">Entry</Name>
+              </Parameter>
+              <Parameter ParameterId="1880096778" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">''</Element>
+                  <Element name="DataType">''</Element>
+                  <Element name="Default">'2'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:EntryRX9">Entry</Name>
+              </Parameter>
+            </ParameterSection>
+            <Parameter ParameterId="1879048192" type="localTypes:RxTxPdo">
+              <Attributes offlineaccess="readwrite" download="true" />
+              <Default>
+                <Element name="NumberofExcludes">0</Element>
+                <Element name="NumberofEntries">9</Element>
+                <Element name="Index">16#1600</Element>
+                <Element name="Name">'Outputs'</Element>
+                <Element name="Fixed">False</Element>
+                <Element name="Mandatory">False</Element>
+                <Element name="Virtual">False</Element>
+                <Element name="Sm">2</Element>
+                <Element name="Su">2</Element>
+                <Element name="DependOnSlot">false</Element>
+                <Element name="DependOnSlotGroup">false</Element>
+                <Element name="OverwrittenByModule">false</Element>
+              </Default>
+              <Name name="local:RxTxPdo">RxTxPdo</Name>
+            </Parameter>
+          </ParameterSection>
+        </ParameterSection>
+        <ParameterSection>
+          <Name name="local:TxPDO">TxPDO</Name>
+          <Parameter ParameterId="1342636032" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>3</Default>
+            <Name name="local:Parameter_NumberOfTx">Number of TxPDOs of the Slave</Name>
+            <Description name="local:Parameter_NumberOfTx">Number of TxPDOs of the Slave</Description>
+          </Parameter>
+          <ParameterSection>
+            <Name name="local:TxPDO1">TxPDO1</Name>
+            <ParameterSection>
+              <Name name="local:StatuswordTX1">Statusword</Name>
+              <Parameter ParameterId="1879375874" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#6041</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">16</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:StatuswordTX1">Statusword</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424450" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Statusword'</Element>
+                  <Element name="DataType">'UINT'</Element>
+                  <Element name="Default">'3'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:StatuswordTX1">Statusword</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Modes20of20operation20displayTX2">Modes of operation display</Name>
+              <Parameter ParameterId="1879375875" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#6061</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">8</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Modes20of20operation20displayTX2">Modes of operation display</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424451" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Modes of operation display'</Element>
+                  <Element name="DataType">'SINT'</Element>
+                  <Element name="Default">'3'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Modes20of20operation20displayTX2">Modes of operation display</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Position20actual20valueTX3">Position actual value</Name>
+              <Parameter ParameterId="1879375876" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#6064</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">32</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Position20actual20valueTX3">Position actual value</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424452" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Position actual value'</Element>
+                  <Element name="DataType">'DINT'</Element>
+                  <Element name="Default">'3'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Position20actual20valueTX3">Position actual value</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Velocity20actual20valueTX4">Velocity actual value</Name>
+              <Parameter ParameterId="1879375877" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#606C</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">32</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Velocity20actual20valueTX4">Velocity actual value</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424453" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Velocity actual value'</Element>
+                  <Element name="DataType">'DINT'</Element>
+                  <Element name="Default">'3'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Velocity20actual20valueTX4">Velocity actual value</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Torque20actual20valueTX5">Torque actual value</Name>
+              <Parameter ParameterId="1879375878" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#6077</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">16</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Torque20actual20valueTX5">Torque actual value</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424454" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Torque actual value'</Element>
+                  <Element name="DataType">'INT'</Element>
+                  <Element name="Default">'3'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Torque20actual20valueTX5">Torque actual value</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:Multiturns20actual20valueTX6">Multiturns actual value</Name>
+              <Parameter ParameterId="1879375879" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#2194</Element>
+                  <Element name="SubIndex">5</Element>
+                  <Element name="Size">32</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:Multiturns20actual20valueTX6">Multiturns actual value</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424455" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Multiturns actual value'</Element>
+                  <Element name="DataType">'DINT'</Element>
+                  <Element name="Default">'3'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:Multiturns20actual20valueTX6">Multiturns actual value</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:EntryTX7">Entry</Name>
+              <Parameter ParameterId="1879375880" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">0</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">8</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:EntryTX7">Entry</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424456" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">''</Element>
+                  <Element name="DataType">''</Element>
+                  <Element name="Default">'3'</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:EntryTX7">Entry</Name>
+              </Parameter>
+            </ParameterSection>
+            <Parameter ParameterId="1879375872" type="localTypes:RxTxPdo">
+              <Attributes offlineaccess="readwrite" download="true" />
+              <Default>
+                <Element name="NumberofExcludes">0</Element>
+                <Element name="NumberofEntries">7</Element>
+                <Element name="Index">16#1a00</Element>
+                <Element name="Name">'Inputs'</Element>
+                <Element name="Fixed">False</Element>
+                <Element name="Mandatory">False</Element>
+                <Element name="Virtual">False</Element>
+                <Element name="Sm">3</Element>
+                <Element name="Su">3</Element>
+                <Element name="DependOnSlot">false</Element>
+                <Element name="DependOnSlotGroup">false</Element>
+                <Element name="OverwrittenByModule">false</Element>
+              </Default>
+              <Name name="local:RxTxPdo">RxTxPdo</Name>
+            </Parameter>
+          </ParameterSection>
+          <ParameterSection>
+            <Name name="local:TxPDO2">TxPDO2</Name>
+            <ParameterSection>
+              <Name name="local:New20Message20AvailableTX1">New Message Available</Name>
+              <Parameter ParameterId="1879376130" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#10F3</Element>
+                  <Element name="SubIndex">4</Element>
+                  <Element name="Size">1</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:New20Message20AvailableTX1">New Message Available</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424706" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'New Message Available'</Element>
+                  <Element name="DataType">'BIT'</Element>
+                  <Element name="Default">''</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:New20Message20AvailableTX1">New Message Available</Name>
+              </Parameter>
+            </ParameterSection>
+            <ParameterSection>
+              <Name name="local:EntryTX2">Entry</Name>
+              <Parameter ParameterId="1879376131" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">0</Element>
+                  <Element name="Size">15</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:EntryTX2">Entry</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424707" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">''</Element>
+                  <Element name="DataType">''</Element>
+                  <Element name="Default">''</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:EntryTX2">Entry</Name>
+              </Parameter>
+            </ParameterSection>
+            <Parameter ParameterId="1879376128" type="localTypes:RxTxPdo">
+              <Attributes offlineaccess="readwrite" download="true" />
+              <Default>
+                <Element name="NumberofExcludes">0</Element>
+                <Element name="NumberofEntries">2</Element>
+                <Element name="Index">16#1af0</Element>
+                <Element name="Name">'Diag History'</Element>
+                <Element name="Fixed">True</Element>
+                <Element name="Mandatory">False</Element>
+                <Element name="Virtual">False</Element>
+                <Element name="Sm">-1</Element>
+                <Element name="Su">-1</Element>
+                <Element name="DependOnSlot">false</Element>
+                <Element name="DependOnSlotGroup">false</Element>
+                <Element name="OverwrittenByModule">false</Element>
+              </Default>
+              <Name name="local:RxTxPdo">RxTxPdo</Name>
+            </Parameter>
+          </ParameterSection>
+          <ParameterSection>
+            <Name name="local:TxPDO3">TxPDO3</Name>
+            <ParameterSection>
+              <Name name="local:TimestampTX1">Timestamp</Name>
+              <Parameter ParameterId="1879376386" type="localTypes:Entry">
+                <Attributes offlineaccess="readwrite" download="true" />
+                <Default>
+                  <Element name="Index">16#10F8</Element>
+                  <Element name="SubIndex">0</Element>
+                  <Element name="Size">64</Element>
+                  <Element name="DependOnSlot">false</Element>
+                  <Element name="DependOnSlotGroup">false</Element>
+                </Default>
+                <Name name="local:TimestampTX1">Timestamp</Name>
+              </Parameter>
+              <Parameter ParameterId="1880424962" type="localTypes:PDO_Information">
+                <Attributes offlineaccess="readwrite" download="false" />
+                <Default>
+                  <Element name="Name">'Timestamp'</Element>
+                  <Element name="DataType">'ULINT'</Element>
+                  <Element name="Default">''</Element>
+                  <Element name="Comment">''</Element>
+                </Default>
+                <Name name="local:TimestampTX1">Timestamp</Name>
+              </Parameter>
+            </ParameterSection>
+            <Parameter ParameterId="1879376384" type="localTypes:RxTxPdo">
+              <Attributes offlineaccess="readwrite" download="true" />
+              <Default>
+                <Element name="NumberofExcludes">0</Element>
+                <Element name="NumberofEntries">1</Element>
+                <Element name="Index">16#1af1</Element>
+                <Element name="Name">'Timestamp'</Element>
+                <Element name="Fixed">True</Element>
+                <Element name="Mandatory">False</Element>
+                <Element name="Virtual">False</Element>
+                <Element name="Sm">-1</Element>
+                <Element name="Su">-1</Element>
+                <Element name="DependOnSlot">false</Element>
+                <Element name="DependOnSlotGroup">false</Element>
+                <Element name="OverwrittenByModule">false</Element>
+              </Default>
+              <Name name="local:RxTxPdo">RxTxPdo</Name>
+            </Parameter>
+          </ParameterSection>
+        </ParameterSection>
+        <ParameterSection>
+          <Name name="local:SyncManager">SyncManager</Name>
+          <Parameter ParameterId="1342177280" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>4</Default>
+            <Name name="local:Parameter_NumberofSyncMan">Number of SyncManagers of the Slave</Name>
+            <Description name="local:Parameter_NumberofSyncMan">Number of SyncManagers of the Slave</Description>
+          </Parameter>
+          <Parameter ParameterId="1342177281" type="localTypes:Sync">
+            <Attributes />
+            <Default>
+              <Element name="physicalAddress">4608</Element>
+              <Element name="length">512</Element>
+              <Element name="flagtypedir">38</Element>
+              <Element name="flagevent">0</Element>
+              <Element name="flagctrl">1</Element>
+              <Element name="synctype">3</Element>
+            </Default>
+            <Name name="local:Sync">Sync </Name>
+          </Parameter>
+          <Parameter ParameterId="1342177282" type="localTypes:Sync">
+            <Attributes />
+            <Default>
+              <Element name="physicalAddress">5120</Element>
+              <Element name="length">512</Element>
+              <Element name="flagtypedir">34</Element>
+              <Element name="flagevent">0</Element>
+              <Element name="flagctrl">1</Element>
+              <Element name="synctype">2</Element>
+            </Default>
+            <Name name="local:Sync">Sync </Name>
+          </Parameter>
+          <Parameter ParameterId="1342177283" type="localTypes:Sync">
+            <Attributes />
+            <Default>
+              <Element name="physicalAddress">4096</Element>
+              <Element name="flagtypedir">100</Element>
+              <Element name="synctype">1</Element>
+              <Element name="length">24</Element>
+              <Element name="flagevent">0</Element>
+              <Element name="flagctrl">1</Element>
+              <Element name="flagvirtual">0</Element>
+            </Default>
+            <Name name="local:Sync">Sync </Name>
+          </Parameter>
+          <Parameter ParameterId="1342177284" type="localTypes:Sync">
+            <Attributes />
+            <Default>
+              <Element name="physicalAddress">4352</Element>
+              <Element name="flagtypedir">32</Element>
+              <Element name="synctype">0</Element>
+              <Element name="length">18</Element>
+              <Element name="flagevent">0</Element>
+              <Element name="flagctrl">1</Element>
+              <Element name="flagvirtual">0</Element>
+            </Default>
+            <Name name="local:Sync">Sync </Name>
+          </Parameter>
+        </ParameterSection>
+        <ParameterSection>
+          <Name name="local:FMMUs">FMMUs</Name>
+          <Parameter ParameterId="1342177312" type="std:DWORD">
+            <Attributes download="true" functional="false" />
+            <Default>3</Default>
+            <Name name="local:Parameter_NumberofFMMU">Number of FMMUs of the Slave</Name>
+            <Description name="local:Parameter_NumberofFMMU">Number of FMMUs of the Slave</Description>
+          </Parameter>
+          <Parameter ParameterId="1342177313" type="localTypes:FMMU">
+            <Attributes />
+            <Default>
+              <Element name="globstartadr">33554432</Element>
+              <Element name="access">2</Element>
+              <Element name="length">24</Element>
+              <Element name="startbit">0</Element>
+              <Element name="endbit">7</Element>
+              <Element name="physstartadr">4096</Element>
+              <Element name="logstartbit">0</Element>
+              <Element name="flags">1</Element>
+            </Default>
+            <Name name="local:FMMU">FMMU </Name>
+          </Parameter>
+          <Parameter ParameterId="1342177314" type="localTypes:FMMU">
+            <Attributes />
+            <Default>
+              <Element name="globstartadr">16777216</Element>
+              <Element name="access">1</Element>
+              <Element name="length">18</Element>
+              <Element name="startbit">0</Element>
+              <Element name="endbit">7</Element>
+              <Element name="physstartadr">4352</Element>
+              <Element name="logstartbit">0</Element>
+              <Element name="flags">1</Element>
+            </Default>
+            <Name name="local:FMMU">FMMU </Name>
+          </Parameter>
+          <Parameter ParameterId="1342177315" type="localTypes:FMMU">
+            <Attributes />
+            <Default>
+              <Element name="globstartadr">524288</Element>
+              <Element name="access">1</Element>
+              <Element name="length">1</Element>
+              <Element name="startbit">0</Element>
+              <Element name="endbit">0</Element>
+              <Element name="physstartadr">2061</Element>
+              <Element name="logstartbit">0</Element>
+              <Element name="flags">1</Element>
+            </Default>
+            <Name name="local:FMMU">FMMU </Name>
+          </Parameter>
+        </ParameterSection>
+        <Parameter ParameterId="16777218" type="std:UINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:Controlword">Controlword</Name>
+          <Description name="local:Controlword">Controlword</Description>
+        </Parameter>
+        <Parameter ParameterId="16777219" type="std:SINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:Modes20of20operation">Modes of operation</Name>
+          <Description name="local:Modes20of20operation">Modes of operation</Description>
+        </Parameter>
+        <Parameter ParameterId="16777220" type="std:DINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:Target20position">Target position</Name>
+          <Description name="local:Target20position">Target position</Description>
+        </Parameter>
+        <Parameter ParameterId="16777221" type="std:UDINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:Profile20velocity">Profile velocity</Name>
+          <Description name="local:Profile20velocity">Profile velocity</Description>
+        </Parameter>
+        <Parameter ParameterId="16777222" type="std:DINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:Target20velocity">Target velocity</Name>
+          <Description name="local:Target20velocity">Target velocity</Description>
+        </Parameter>
+        <Parameter ParameterId="16777223" type="std:INT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:Target20torque">Target torque</Name>
+          <Description name="local:Target20torque">Target torque</Description>
+        </Parameter>
+        <Parameter ParameterId="16777224" type="std:DINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:Velocity20offset">Velocity offset</Name>
+          <Description name="local:Velocity20offset">Velocity offset</Description>
+        </Parameter>
+        <Parameter ParameterId="16777225" type="std:INT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:Torque20offset">Torque offset</Name>
+          <Description name="local:Torque20offset">Torque offset</Description>
+        </Parameter>
+        <Parameter ParameterId="16777226" type="std:USINT">
+          <Attributes offlineaccess="none" onlineaccess="none" download="true" channel="output" />
+          <Default>0</Default>
+          <Name name="local:DummyOut8">---</Name>
+          <Description name="local:DummyOut8">---</Description>
+        </Parameter>
+        <Parameter ParameterId="33554434" type="std:UINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="input" />
+          <Default>0</Default>
+          <Name name="local:Statusword">Statusword</Name>
+          <Description name="local:Statusword">Statusword</Description>
+        </Parameter>
+        <Parameter ParameterId="33554435" type="std:SINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="input" />
+          <Default>0</Default>
+          <Name name="local:Modes20of20operation20display">Modes of operation display</Name>
+          <Description name="local:Modes20of20operation20display">Modes of operation display</Description>
+        </Parameter>
+        <Parameter ParameterId="33554436" type="std:DINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="input" />
+          <Default>0</Default>
+          <Name name="local:Position20actual20value">Position actual value</Name>
+          <Description name="local:Position20actual20value">Position actual value</Description>
+        </Parameter>
+        <Parameter ParameterId="33554437" type="std:DINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="input" />
+          <Default>0</Default>
+          <Name name="local:Velocity20actual20value">Velocity actual value</Name>
+          <Description name="local:Velocity20actual20value">Velocity actual value</Description>
+        </Parameter>
+        <Parameter ParameterId="33554438" type="std:INT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="input" />
+          <Default>0</Default>
+          <Name name="local:Torque20actual20value">Torque actual value</Name>
+          <Description name="local:Torque20actual20value">Torque actual value</Description>
+        </Parameter>
+        <Parameter ParameterId="33554439" type="std:DINT">
+          <Attributes offlineaccess="readwrite" onlineaccess="readwrite" download="true" channel="input" />
+          <Default>0</Default>
+          <Name name="local:Multiturns20actual20value">Multiturns actual value</Name>
+          <Description name="local:Multiturns20actual20value">Multiturns actual value</Description>
+        </Parameter>
+        <Parameter ParameterId="33554440" type="std:USINT">
+          <Attributes offlineaccess="none" onlineaccess="none" download="true" channel="input" />
+          <Default>0</Default>
+          <Name name="local:DummyIn6">---</Name>
+          <Description name="local:DummyIn6">---</Description>
+        </Parameter>
+        <ParameterSection>
+          <Name name="local:SDOs">SDOs</Name>
+          <Parameter ParameterId="1627389952" type="std:UINT">
+            <Attributes download="true" functional="false" />
+            <Default>0</Default>
+            <Name name="local:Parameter_Number_Of_SDO">Number of SDO</Name>
+            <Description name="local:Parameter_Number_Of_SDO">Number of SDO</Description>
+          </Parameter>
+        </ParameterSection>
+        <!--parameters for accessing the CiA402 output data by the driver block-->
+        <Parameter ParameterId="910000001" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>16777218</Default>
+          <Name>Pointer to Control Word</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="910000002" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>16777219</Default>
+          <Name>Pointer to Modes of Operation</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="910000003" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>16777220</Default>
+          <Name>Pointer to Target Position</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="910000004" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>16777221</Default>
+          <Name>Pointer to Profile Velocity</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="910000005" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>16777222</Default>
+          <Name>Pointer to Target Velocity</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="910000006" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>16777223</Default>
+          <Name>Pointer to Target Torque</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="910000007" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>16777224</Default>
+          <Name>Pointer to Velocity offset</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="910000008" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>16777225</Default>
+          <Name>Pointer to Torque offset</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <!--parameters for accessing the CiA402 input data by the driver block-->
+        <Parameter ParameterId="920000001" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>33554434</Default>
+          <Name>Pointer to Status Word</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="920000002" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>33554435</Default>
+          <Name>Pointer to Modes of Operation Display</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="920000003" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>33554436</Default>
+          <Name>Pointer to Position Actual Value</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="920000004" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>33554437</Default>
+          <Name>Pointer to Velocity Actual Value</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="920000005" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>33554438</Default>
+          <Name>Pointer to Torque Actual Value</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+        <Parameter ParameterId="920000006" type="std:DWORD">
+          <Attributes offlineaccess="none" onlineaccess="read" />
+          <Default>33554439</Default>
+          <Name>Pointer to Multiturns Actual Value</Name>
+          <Custom>
+            <POINTER_TO_IOCONFIGADDRESS />
+          </Custom>
+        </Parameter>
+      </HostParameterSet>
+    </Connector>
+  </Device>
+  <ImportPluginVersion>3.5.0.0</ImportPluginVersion>
+</DeviceDescription>

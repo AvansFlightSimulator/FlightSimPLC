@@ -1,0 +1,31 @@
+Opening 'C:\\Users\\User\\Documents\\Repos\\FlightSim\\build\\plc-inspection\\Flight Simulator.project'
+Exporting object 'Application [PLC: PLC Logic]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object '__VisualizationStyle [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'Library Manager [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'gvlSetting [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'ServoData [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'Task Configuration [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'Visualization Manager [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'TcpClient [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'main [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'Main [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'GVL [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'DriveDiagnostics [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'AppendDiagnosticText [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'BuildDiagnosticFeedback [PLC: PLC Logic: Application]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'EtherCAT_Task [PLC: PLC Logic: Application: Task Configuration]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'VISU_TASK [PLC: PLC Logic: Application: Task Configuration]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'Task [PLC: PLC Logic: Application: Task Configuration]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+Exporting object 'WebVisu [PLC: PLC Logic: Application: Visualization Manager]' to file 'C:\Users\User\Documents\Repos\FlightSimPLC\diagnostics\Flight Simulator Diagnostics.project.export'
+------ Build started: Application: PLC.Application -------
+Typify code...
+Missing element configuration. Element may not be usable.
+Missing element configuration. Element may not be usable.
+Library CmpCodeMeter has not been added to the Library Manager, or no valid license could be found
+Library SysSocket Implementation has not been added to the Library Manager, or no valid license could be found
+Library CmpTargetVisu has not been added to the Library Manager, or no valid license could be found
+Library CmpEventMgr Implementation has not been added to the Library Manager, or no valid license could be found
+'sampleSequence' is no input of 'DriveDiagnostics'
+'targetNew' is no input of 'DriveDiagnostics'
+'followingNew' is no input of 'DriveDiagnostics'
+Compile complete -- 3 errors, 6 warnings
