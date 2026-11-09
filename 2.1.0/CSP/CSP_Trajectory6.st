@@ -55,7 +55,11 @@ IF Stop THEN
     IF NOT stopping THEN
         // Target = where a full-limit stop from the current state ends.
         FOR i := 1 TO 6 DO
-            goal[i] := P[i] + CSP_StopOffset(V:=V[i], A:=A[i], MaxAcceleration:=maxA, MaxJerk:=maxJ);
+            // Clamped so a stop at a travel limit can finish: P is held inside
+            // travel, and Busy clears only when P equals this target.
+            goal[i] := LIMIT(CSP_Config.MinimumPosition,
+                P[i] + CSP_StopOffset(V:=V[i], A:=A[i], MaxAcceleration:=maxA, MaxJerk:=maxJ),
+                CSP_Config.MaximumPosition);
         END_FOR
         rampStart := goal; rampEnd := goal; rampElapsed := rampDuration;
         stopping := TRUE;
@@ -170,7 +174,11 @@ FOR i := 1 TO 6 DO
         V[i] := V[i] + A[i]*cycleTime + jTry*cycleTime*cycleTime/2.0;
         A[i] := A[i] + jTry*cycleTime;
     END_IF
-    IF P[i] < CSP_Config.MinimumPosition - 1E-6 OR P[i] > CSP_Config.MaximumPosition + 1E-6 THEN
+    // The command always stays inside the range; reaching it is never a PLC
+    // fault. Only a non-finite value (NaN fails this comparison) faults.
+    IF P[i] = P[i] THEN
+        P[i] := LIMIT(CSP_Config.MinimumPosition, P[i], CSP_Config.MaximumPosition);
+    ELSE
         Fault := TRUE;
     END_IF
     rest := P[i] + CSP_StopOffset(V:=V[i], A:=A[i], MaxAcceleration:=maxA, MaxJerk:=maxJ);

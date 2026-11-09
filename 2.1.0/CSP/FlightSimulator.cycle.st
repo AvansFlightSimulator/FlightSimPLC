@@ -9,7 +9,8 @@ END_VAR
 
 (* IMPLEMENTATION *)
 // If safety system has been triggered/broken go to error.
-IF NOT THIS^.safetySystem THEN
+// The dashboard E-Stop takes the same path; it never changes the safety input.
+IF NOT THIS^.safetySystem OR GVL.softwareEStop THEN
 	THIS^.state := stateFlightSimulator.error;
 	THIS^.safetyStop();
 END_IF

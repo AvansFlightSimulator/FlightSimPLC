@@ -6,8 +6,10 @@ VAR_GLOBAL CONSTANT
     ControlMode : SINT := 1;
     // Also set EtherCAT_Task, master cycle and slave DC Sync0 to this interval.
     CycleSeconds : LREAL := 0.004;
-    MinimumPosition : LREAL := 10.0;
-    MaximumPosition : LREAL := 390.0;
+    // Command saturation range, 1 mm inside the drives' own limits. Reaching it is
+    // normal; only the drives may raise a range error.
+    MinimumPosition : LREAL := 6.0;
+    MaximumPosition : LREAL := 349.0;
     MaximumVelocity : LREAL := 25.0; // mm/s; commissioning starting values
     MaximumAcceleration : LREAL := 50.0; // mm/s^2
     BrakingAcceleration : LREAL := 50.0; // <= MaximumAcceleration

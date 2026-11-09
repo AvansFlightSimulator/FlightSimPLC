@@ -15,8 +15,24 @@ VAR
     length, i : INT;
     discarding : BOOL;
     positions : ARRAY[1..6] OF LREAL;
+    // Dashboard commands hold the HMI flag long enough for the main task to see it.
+    startHold, stopHold, resetHold : TON;
+    startActive, stopActive, resetActive : BOOL;
+    commandAccepted : BOOL;
+END_VAR
+VAR CONSTANT
+    CommandPulse : TIME := T#200MS;
 END_VAR
 (* IMPLEMENTATION *)
+// Runs before the connection check so a flag cannot stay set after a disconnect.
+// Each flag is cleared only at the end of its own pulse, so the PLC HMI can
+// still write these variables between dashboard commands.
+startHold(IN:=startActive, PT:=CommandPulse);
+stopHold(IN:=stopActive, PT:=CommandPulse);
+resetHold(IN:=resetActive, PT:=CommandPulse);
+IF startHold.Q THEN GVL.startHMI := FALSE; startActive := FALSE; END_IF
+IF stopHold.Q THEN GVL.stopHMI := FALSE; stopActive := FALSE; END_IF
+IF resetHold.Q THEN GVL.resetHMI := FALSE; resetActive := FALSE; END_IF
 CSP_Data.Connected := Connected;
 Error := FALSE;
 IF NOT Connected THEN
@@ -27,7 +43,20 @@ IF reader.xReady AND count > 0 THEN
     FOR i := 0 TO UDINT_TO_INT(count)-1 DO
         IF buffer[i] = 10 THEN
             frame[length] := 0;
-            IF NOT discarding AND length <= 254 AND CSP_ParseFrame(Frame:=frame,Positions:=positions) THEN
+            // Operator commands use the existing HMI flags and must match exactly.
+            // GVL.safetySystem is the hardware safety relay and is never written here.
+            commandAccepted := NOT discarding AND length <= 254;
+            IF commandAccepted THEN
+                IF frame = '{"command":"start"}' THEN GVL.startHMI := TRUE; startActive := TRUE;
+                ELSIF frame = '{"command":"stop"}' THEN GVL.stopHMI := TRUE; stopActive := TRUE;
+                ELSIF frame = '{"command":"reset"}' THEN GVL.resetHMI := TRUE; resetActive := TRUE;
+                ELSIF frame = '{"command":"estop"}' THEN GVL.softwareEStop := TRUE;
+                ELSE commandAccepted := FALSE;
+                END_IF
+            END_IF
+            IF commandAccepted THEN
+                CSP_Data.CommandsAccepted := CSP_Data.CommandsAccepted+1;
+            ELSIF NOT discarding AND length <= 254 AND CSP_ParseFrame(Frame:=frame,Positions:=positions) THEN
                 CSP_Data.Generation := CSP_Data.Generation+1;
                 CSP_Data.ReceivedPosition := positions; CSP_Data.ReceivedMode := 8;
                 CSP_Data.ReceivedTick := TIME_TO_UDINT(TIME());

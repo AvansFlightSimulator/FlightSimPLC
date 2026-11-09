@@ -68,6 +68,21 @@ ok := AppendDiagnosticText(',"homing":',output) AND ok;
 ok := AppendDiagnosticText(INT_TO_STRING(BOOL_TO_INT(CSP_Data.Homing)),output) AND ok;
 ok := AppendDiagnosticText(',"readyToStart":',output) AND ok;
 ok := AppendDiagnosticText(INT_TO_STRING(BOOL_TO_INT(CSP_Data.ReadyToStart)),output) AND ok;
+// Operator state for the PC dashboard's control panel.
+ok := AppendDiagnosticText(',"platformState":',output) AND ok;
+ok := AppendDiagnosticText(INT_TO_STRING(TO_INT(CSP_Data.PlatformState)),output) AND ok;
+ok := AppendDiagnosticText(',"motionEnabled":',output) AND ok;
+ok := AppendDiagnosticText(INT_TO_STRING(BOOL_TO_INT(CSP_Data.Enable)),output) AND ok;
+ok := AppendDiagnosticText(',"fault":',output) AND ok;
+ok := AppendDiagnosticText(INT_TO_STRING(BOOL_TO_INT(CSP_Data.Fault)),output) AND ok;
+ok := AppendDiagnosticText(',"faultCode":',output) AND ok;
+ok := AppendDiagnosticText(UINT_TO_STRING(CSP_Data.FaultCode),output) AND ok;
+ok := AppendDiagnosticText(',"safetyOk":',output) AND ok;
+ok := AppendDiagnosticText(INT_TO_STRING(BOOL_TO_INT(GVL.safetySystem)),output) AND ok;
+ok := AppendDiagnosticText(',"softwareEStop":',output) AND ok;
+ok := AppendDiagnosticText(INT_TO_STRING(BOOL_TO_INT(GVL.softwareEStop)),output) AND ok;
+ok := AppendDiagnosticText(',"commandsAccepted":',output) AND ok;
+ok := AppendDiagnosticText(UDINT_TO_STRING(CSP_Data.CommandsAccepted),output) AND ok;
 ok := AppendDiagnosticText('}}$N',output) AND ok;
 // Build the packet from the coherent copy, outside the EtherCAT task.
 IF ok THEN CSP_Feedback := output; ELSE CSP_Feedback := ''; END_IF

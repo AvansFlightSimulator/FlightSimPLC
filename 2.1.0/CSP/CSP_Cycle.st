@@ -93,8 +93,7 @@ IF NOT CSP_Data.OwnsOutputs THEN
             AND CSP_Config.BrakingAcceleration <= CSP_Config.MaximumAcceleration
             AND CSP_Config.MaximumJerk > 0 AND CSP_Config.MinimumPosition < CSP_Config.MaximumPosition;
         FOR i := 1 TO 6 DO
-            handoverValid := handoverValid AND actual[i] >= CSP_Config.MinimumPosition
-                AND actual[i] <= CSP_Config.MaximumPosition AND CSP_Data.Axis[i].ModeActual = 1;
+            handoverValid := handoverValid AND CSP_Data.Axis[i].ModeActual = 1;
             // Bumpless transfer: the first CSP target is the measured raw position.
             CSP_Data.InitialTargetRaw[i] := CSP_Data.Axis[i].ActualRaw;
             initialPosition[i] := actual[i]; // = ActualRaw * PositionFactor
@@ -169,6 +168,10 @@ END_IF
 // Keep the first cause latched; later consequences must not overwrite it.
 IF NOT CSP_Data.Fault AND CSP_Data.OwnsOutputs AND (NOT allReady OR NOT GVL.safetySystem) THEN
     CSP_Data.Fault := TRUE; CSP_Data.FaultCode := 2;
+END_IF
+// Dashboard E-Stop: the same quick stop as losing the safety input, with its own code.
+IF NOT CSP_Data.Fault AND CSP_Data.OwnsOutputs AND GVL.softwareEStop THEN
+    CSP_Data.Fault := TRUE; CSP_Data.FaultCode := 11;
 END_IF
 IF CSP_Data.Fault THEN
     CSP_Data.PlatformState := PlatformControlState.FAULT;
@@ -292,11 +295,6 @@ CASE CSP_Data.TransitionState OF
     IF allDisabled THEN CSP_Data.TransitionState := 30; END_IF
 30,40:
     FOR i := 1 TO 6 DO
-        IF actual[i] < CSP_Config.MinimumPosition OR actual[i] > CSP_Config.MaximumPosition THEN
-            CSP_Data.Fault := TRUE; CSP_Data.FaultCode := 5; RETURN;
-        END_IF
-    END_FOR
-    FOR i := 1 TO 6 DO
         CSP_Data.Axis[i].TargetRaw := CSP_Data.Axis[i].ActualRaw;
         CSP_Data.Axis[i].ModeRequested := 8;
         stateWord := CSP_Data.Axis[i].CiA402State;
@@ -316,11 +314,6 @@ CASE CSP_Data.TransitionState OF
     END_FOR
     IF allMode THEN CSP_Data.TransitionState := 40; END_IF
     IF allMode AND allEnabled AND CSP_Data.Homing AND NOT CSP_Data.StopRequested THEN
-        FOR i := 1 TO 6 DO
-            IF actual[i] < CSP_Config.MinimumPosition OR actual[i] > CSP_Config.MaximumPosition THEN
-                CSP_Data.Fault := TRUE; CSP_Data.FaultCode := 5; RETURN;
-            END_IF
-        END_FOR
         trajectory(Initialize:=TRUE, Actual:=actual);
         FOR i := 1 TO 6 DO
             CSP_Data.Axis[i].CommandPosition := actual[i];

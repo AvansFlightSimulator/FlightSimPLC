@@ -45,8 +45,44 @@ comes to rest at the target, which is a time-optimal approach that decelerates o
 as late as the limits require. It is clamped by MaximumJerk, the smaller of
 MaximumAcceleration/BrakingAcceleration, a jerk-aware MaximumVelocity envelope,
 and a travel envelope: from every commanded state a full-limit stop ends inside
-MinimumPosition..MaximumPosition. Targets are limited to travel; a commanded
-position outside travel (not expected) raises FaultCode 7.
+MinimumPosition..MaximumPosition.
+
+Travel limits are handled per axis as three separate cases:
+
+- A requested position outside travel is normal saturation. The effective target
+  is clamped with LIMIT and `Axis[i].PositionLimit` shows it; nothing faults.
+- The command reaching a limit is also normal. The axis stops there, holds, and
+  replans from its current P/V/A as soon as the request moves back into range.
+- The PLC never faults because of the position range. MinimumPosition 6 and
+  MaximumPosition 349 sit 1 mm inside the drives' own limits, and the commanded
+  position is always clamped to them. Integration can land slightly past the limit
+  (simulated worst case about 0.0001 mm at 200 mm/s, 400 mm/s^2, 2000 mm/s^3).
+  A non-finite command still raises FaultCode 7.
+
+The Stop target is clamped the same way. Without that, a stop near a limit could
+leave Busy TRUE indefinitely, because P is held inside travel.
+
+## Dashboard commands
+
+The PC dashboard sends one of four exact frames, `{"command":"start"}`, `"stop"`,
+`"reset"` or `"estop"`, on the existing TCP connection. CSP_Receive turns Start, Stop
+and Reset into 200 ms pulses on the existing GVL.startHMI, stopHMI and resetHMI flags,
+so they follow the same logic as the panel and PLC HMI buttons. Only CSP mode
+receives these frames.
+
+`estop` latches GVL.softwareEStop, which is a software quick stop and not a safety
+function. Under CSP it raises FaultCode 11 and the same quick stop as losing the
+safety input; under PP it enters the same FlightSimulator error path. A rising Reset
+edge clears it. GVL.safetySystem remains the hardware safety relay and is never
+written by these commands. Feedback reports platformState, motionEnabled, fault,
+faultCode, safetyOk, softwareEStop and commandsAccepted for the dashboard.
+
+## Measured position
+
+Measured position beyond the range is the drives' responsibility. A drive that
+errors leaves operation-enabled, which the PLC reports as FaultCode 6 with the
+existing quick stop and Reset path. This requires the drive's limit response to be
+configured as an error. FaultCode 5 no longer exists.
 
 The 20 Hz PC targets are linearly interpolated over the measured packet interval
 (at most 100 ms), starting from the current interpolated target. This turns the
@@ -154,9 +190,7 @@ For reason 2, inspect `CSP_Data.Axis[1..6].ReadinessCode`: 0 ready,
 1 missing PDO pointer, 2 Festo SDO initialization incomplete, 3 invalid factor,
 4 EtherCAT connector not ready, 5 raw/user-unit conversion mismatch.
 The existing `TransitionState`, `FaultCode`, `Statusword` and `ModeActual`
-remain available. FaultCode 5 means the measured starting position is outside
-configured travel; this must be resolved through the established reference/
-commissioning procedure, not by bypassing the travel check.
+remain available.
 
 The original project is retained as final.before-startup-fix.project beside
 final.project. No PLC download or live motion validation was performed.

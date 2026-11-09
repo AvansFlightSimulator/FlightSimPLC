@@ -47,6 +47,8 @@ VAR_GLOBAL
     // Error/CommandAborted. PPMoveDone[1..6] shows the axis.
     StartupBlockReason : UINT;
     ReversalDeferred : BOOL;
+    // Dashboard Start/Stop/Reset/E-Stop frames accepted; the PC uses it as an acknowledgement.
+    CommandsAccepted : UDINT;
     // Map 0x60F4:00 (DINT) from each drive here; not computed PC error.
     FollowingErrorRaw : ARRAY[1..6] OF DINT;
 END_VAR

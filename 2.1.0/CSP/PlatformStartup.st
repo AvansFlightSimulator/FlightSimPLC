@@ -15,8 +15,11 @@ END_VAR
 // CSP_Data.OwnsOutputs; PP again after CSP publishes CSPReleased on Reset.
 resetButtonEdge(CLK:=GVL.resetButton OR GVL.resetHMI);
 startButtonEdge(CLK:=GVL.startButton OR GVL.startHMI);
+// Only the rising edge clears the software E-Stop, so an E-Stop pressed while
+// a Reset pulse is still active stays latched.
+IF resetButtonEdge.Q THEN GVL.softwareEStop := FALSE; END_IF
 CSP_Data.Reset := GVL.resetButton OR GVL.resetHMI;
-CSP_Data.StopRequested := GVL.stopButton OR GVL.stopHMI;
+CSP_Data.StopRequested := GVL.stopButton OR GVL.stopHMI OR GVL.softwareEStop;
 
 IF NOT initialized THEN
     GVL.FlightSimulator.init(
