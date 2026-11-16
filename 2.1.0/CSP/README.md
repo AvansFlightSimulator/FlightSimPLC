@@ -54,7 +54,7 @@ Travel limits are handled per axis as three separate cases:
 - The command reaching a limit is also normal. The axis stops there, holds, and
   replans from its current P/V/A as soon as the request moves back into range.
 - The PLC never faults because of the position range. MinimumPosition 6 and
-  MaximumPosition 349 sit 1 mm inside the drives' own limits, and the commanded
+  MaximumPosition 394 sit 1 mm inside the drives' own limits, and the commanded
   position is always clamped to them. Integration can land slightly past the limit
   (simulated worst case about 0.0001 mm at 200 mm/s, 400 mm/s^2, 2000 mm/s^3).
   A non-finite command still raises FaultCode 7.

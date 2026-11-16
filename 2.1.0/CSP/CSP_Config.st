@@ -9,7 +9,7 @@ VAR_GLOBAL CONSTANT
     // Command saturation range, 1 mm inside the drives' own limits. Reaching it is
     // normal; only the drives may raise a range error.
     MinimumPosition : LREAL := 6.0;
-    MaximumPosition : LREAL := 349.0;
+    MaximumPosition : LREAL := 394.0;
     MaximumVelocity : LREAL := 25.0; // mm/s; commissioning starting values
     MaximumAcceleration : LREAL := 50.0; // mm/s^2
     BrakingAcceleration : LREAL := 50.0; // <= MaximumAcceleration
